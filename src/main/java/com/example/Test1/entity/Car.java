@@ -1,31 +1,37 @@
 package com.example.Test1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 @AllArgsConstructor
-
+@NoArgsConstructor
 @Entity
 @Table(name = "car")
-@Data
+@Getter
+@Setter
 
 
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @Nullable
     private  Long id ;
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name ="client_id",nullable = false,referencedColumnName = "id")
+    @JoinColumn(name ="clientId",nullable = false,referencedColumnName = "id")
     private Client client;
-    //private  String carmanufacturer ;
-    private String model ;
-    private String brand ;
-    private String category ;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name ="carTypeId",nullable = false,referencedColumnName = "id")
+    private CarType carType ;
     private int carAge ;
-    private Date registertimecar ;
     private String countryregistration ;
+    private Date registertimecar ;
+
 
 
 }

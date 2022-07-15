@@ -1,35 +1,37 @@
 package com.example.Test1.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.Nullable;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 @AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 @Table(name = "client")
-@Data
+@Getter
+@Setter
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private  Long id ;
-    private  String userName ;
     private  String name ;
-    private  String password ;
-    private  String emailAdress ;
     private Date birthDate ;
-    private Role role;
     private String phoneNumber ;
+    private  String emailAddress ;
+    private  String userName ;
+    private  String password ;
     private int drivingExperience ;
     private boolean activePolicy ;
     private  String currentInsurer ;
-    private boolean oldClaims ;
+    private int oldClaims ;
     private  int numberAccidents ;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
+    @JsonIgnore
     private List<Car> cars;
 
 

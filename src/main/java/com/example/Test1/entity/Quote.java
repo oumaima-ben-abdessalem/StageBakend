@@ -1,15 +1,14 @@
 package com.example.Test1.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 @AllArgsConstructor
-
+@NoArgsConstructor
 @Entity
 @Table(name = "quote")
-@Data
+@Getter
+@Setter
 public class Quote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +16,4 @@ public class Quote {
     private Long id ;
     private Double amount ;
     private QuoteStatus status ;
-
-
-
-
 }

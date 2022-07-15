@@ -1,29 +1,29 @@
 package com.example.Test1.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 @AllArgsConstructor
-
+@NoArgsConstructor
 @Entity
 @Table(name = "assurance")
-@Data
+@Getter
+@Setter
 public class Assurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private  Long id ;
-    @ManyToOne
-    @JoinColumn(name ="insurer_id",nullable = false,referencedColumnName = "id")
-    private Insurer insurer;
+    //@ManyToOne
+    //@JoinColumn(name ="insurer_id",nullable = false,referencedColumnName = "id")
+    //private Insurer insurer;
     @OneToOne
     @JoinColumn(name = "car_id",referencedColumnName = "id")
     private Car car;
     @OneToOne
     @JoinColumn(name = "quote_id",referencedColumnName = "id")
     private Quote quote;
+    private String description ;
 
 
 

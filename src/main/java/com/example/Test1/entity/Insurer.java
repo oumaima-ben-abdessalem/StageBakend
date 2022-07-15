@@ -1,17 +1,16 @@
 package com.example.Test1.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
-
+@NoArgsConstructor
 @Entity
 @Table(name = "insurer")
-@Data
+@Getter
+@Setter
 public class Insurer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +18,10 @@ public class Insurer {
     private long id ;
     private String emailAddress ;
     private String phoneNumber ;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "insurer")
-    private List<Assurance> assurances ;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "insurer")
-    private List<Review> reviews ;
+    private String imageUrl ;
+    //@OneToMany(cascade = CascadeType.ALL,mappedBy = "insurer")
+    //private List<Assurance> assurances ;
+    //@OneToMany(cascade = CascadeType.ALL,mappedBy = "insurer")
+    //private List<Review> reviews ;
 
 }

@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RequestMapping("/api")
+@RequestMapping("/car")
 @RestController
 public class CarController
 {
@@ -22,9 +22,10 @@ public class CarController
         return new ResponseEntity<>(carService.getAllCars(), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Car> addCar(@RequestBody Car car) {
-        Car newCar = carService.addCar(car);
+    @PostMapping("/add/{clientId}/{carTypeId}")
+    public ResponseEntity<Car> addCar(@PathVariable("clientId") Long clientId,
+                                      @PathVariable("carTypeId") Long carTypeId,@RequestBody Car car) {
+        Car newCar = carService.addCar(clientId,carTypeId,car);
         return new ResponseEntity<>(newCar, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
