@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface CarTypeRepository extends JpaRepository<CarType,Long> {
     List<CarType> findCarTypesBybrand(String brand);
+    CarType findByBrandAndModel(String brand, String Model);
 
 
 }

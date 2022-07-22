@@ -27,9 +27,9 @@ public class CarService
         this.carTypeRepository = carTypeRepository;
     }
 
-    public Car addCar(Long clientId,Long carTypeId,Car car) {
+    public Car addCar(Long clientId,Car car) {
         Client client = clientRepository.findById(clientId).get();
-        CarType carType = carTypeRepository.findById(carTypeId).get();
+        CarType carType = carTypeRepository.findByBrandAndModel(car.getCarType().getBrand(), car.getCarType().getModel());
         car.setClient(client);
         car.setCarType(carType);
         return (carRepository.save(car));
@@ -39,8 +39,22 @@ public class CarService
         return carRepository.findAll();
     }
 
-    public Car updateCar(Car car) {
-        return carRepository.save(car);
+    public Car updateCar(Long id,Long clientId,Car car) {
+
+        Car oldCar = carRepository.findById(id).get();
+        Client oldClient = clientRepository.findById(clientId).get();
+        //CarType oldCarType = carTypeRepository.findById(carTypeId).get();
+        //oldCar.setCarType(oldCarType);
+        CarType oldCarType = carTypeRepository.findByBrandAndModel(oldCar.getCarType().getBrand(), oldCar.getCarType().getModel());
+        oldCarType.setBrand(car.getCarType().getBrand());
+        oldCarType.setModel(car.getCarType().getModel());
+        oldCar.setClient(oldClient);
+        oldCar.setId(id);
+        oldCar.setCarAge(car.getCarAge());
+        oldCar.setCountryRegistration(car.getCountryRegistration());
+        oldCar.setRegisterTimeCar(car.getRegisterTimeCar());
+        oldCar.setPower(car.getPower());
+        return carRepository.save(oldCar);
     }
 
     public void deleteCar(Long id) {

@@ -28,9 +28,21 @@ public class ClientService
         return clientRepository.findAll();
     }
 
-    public Client updateClient(Client client) {
+    public Client updateClient(Long id,Client client) {
+        Client oldClient = clientRepository.findById(id).get();
+        oldClient.setBirthDate(client.getBirthDate());
+        oldClient.setOldClaims(client.getOldClaims());
+        oldClient.setId(id);
+        oldClient.setDrivingExperience(client.getDrivingExperience());
+        oldClient.setActivePolicy(client.isActivePolicy());
+        oldClient.setName(client.getName());
+        oldClient.setEmailAddress(client.getEmailAddress());
+        oldClient.setPhoneNumber(client.getPhoneNumber());
+        oldClient.setCurrentInsurer(client.getCurrentInsurer());
+        oldClient.setNumberAccidents(client.getNumberAccidents());
 
-        return clientRepository.save(client);
+
+        return clientRepository.save(oldClient);
     }
 
     public void deleteClient(Long id) {

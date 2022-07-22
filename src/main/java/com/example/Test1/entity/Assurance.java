@@ -14,9 +14,6 @@ public class Assurance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private  Long id ;
-    //@ManyToOne
-    //@JoinColumn(name ="insurer_id",nullable = false,referencedColumnName = "id")
-    //private Insurer insurer;
     @OneToOne
     @JoinColumn(name = "car_id",referencedColumnName = "id")
     private Car car;

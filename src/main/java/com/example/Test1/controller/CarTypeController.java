@@ -26,8 +26,8 @@ public class CarTypeController {
         return new ResponseEntity<>(newCarType, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<CarType> updateCarType(@RequestBody CarType carType) {
-        CarType updatedCarType = carTypeService.updateCarType(carType);
+    public ResponseEntity<CarType> updateCarType(@PathVariable("id") Long id ,@RequestBody CarType carType) {
+        CarType updatedCarType = carTypeService.updateCarType(id,carType);
         return new ResponseEntity<>(updatedCarType,HttpStatus.OK) ;
     }
     @DeleteMapping("/delete/{id}")

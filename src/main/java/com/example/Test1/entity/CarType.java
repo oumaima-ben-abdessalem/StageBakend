@@ -22,5 +22,9 @@ public class CarType {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "carType")
     @JsonIgnore
     private List<Car> cars;
+    @ManyToOne
+    @JoinColumn(name ="offer_id",nullable = true,referencedColumnName = "id")
+    @JsonIgnore
+    private Offer offer;
 
 }

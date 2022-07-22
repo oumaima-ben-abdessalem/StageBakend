@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InsurerRepository extends JpaRepository<Insurer,Long>
 {
+    Insurer findByName(String name) ;
 
 }

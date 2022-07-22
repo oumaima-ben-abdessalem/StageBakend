@@ -1,5 +1,6 @@
 package com.example.Test1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,11 +17,14 @@ public class Insurer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id ;
+    private String name ;
     private String emailAddress ;
     private String phoneNumber ;
     private String imageUrl ;
-    //@OneToMany(cascade = CascadeType.ALL,mappedBy = "insurer")
-    //private List<Assurance> assurances ;
+    private String address ;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "insurer")
+    @JsonIgnore
+    private List<Offer> offers ;
     //@OneToMany(cascade = CascadeType.ALL,mappedBy = "insurer")
     //private List<Review> reviews ;
 

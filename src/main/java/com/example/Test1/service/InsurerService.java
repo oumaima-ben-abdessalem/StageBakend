@@ -14,7 +14,8 @@ public class InsurerService {
     private InsurerRepository insurerRepository;
 
 
-    public InsurerService(InsurerRepository insurerRepository) {
+    public InsurerService(InsurerRepository insurerRepository)
+    {
         this.insurerRepository = insurerRepository;
     }
 
@@ -26,9 +27,15 @@ public class InsurerService {
         return insurerRepository.findAll();
     }
 
-    public Insurer updateInsurer(Insurer insurer) {
+    public Insurer updateInsurer(Long id,Insurer insurer) {
 
-        return insurerRepository.save(insurer);
+        Insurer oldInsurer = insurerRepository.findById(id).get();
+        oldInsurer.setEmailAddress(insurer.getEmailAddress());
+        oldInsurer.setImageUrl(insurer.getImageUrl());
+        oldInsurer.setPhoneNumber(insurer.getPhoneNumber());
+        oldInsurer.setName(insurer.getName());
+        oldInsurer.setId(id);
+        return insurerRepository.save(oldInsurer);
     }
 
     public void deleteInsurer(Long id) {

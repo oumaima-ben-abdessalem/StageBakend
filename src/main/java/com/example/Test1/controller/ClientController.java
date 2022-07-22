@@ -26,8 +26,8 @@ public class ClientController {
         return new ResponseEntity<>(newClient, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Client> updateClient(@RequestBody Client client) {
-        Client updatedClient = clientService.updateClient(client);
+    public ResponseEntity<Client> updateClient(@PathVariable("id") Long id ,@RequestBody Client client) {
+        Client updatedClient = clientService.updateClient(id,client);
         return new ResponseEntity<>(updatedClient,HttpStatus.OK) ;
     }
     @DeleteMapping("/delete/{id}")

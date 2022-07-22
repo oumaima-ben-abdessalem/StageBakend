@@ -22,15 +22,16 @@ public class CarController
         return new ResponseEntity<>(carService.getAllCars(), HttpStatus.OK);
     }
 
-    @PostMapping("/add/{clientId}/{carTypeId}")
-    public ResponseEntity<Car> addCar(@PathVariable("clientId") Long clientId,
-                                      @PathVariable("carTypeId") Long carTypeId,@RequestBody Car car) {
-        Car newCar = carService.addCar(clientId,carTypeId,car);
+    @PostMapping("/add/{clientId}")
+    public ResponseEntity<Car> addCar(@PathVariable("clientId") Long clientId
+                                    ,@RequestBody Car car) {
+        Car newCar = carService.addCar(clientId,car);
         return new ResponseEntity<>(newCar, HttpStatus.CREATED);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Car> updateCar(@RequestBody Car car) {
-        Car updatedCar = carService.updateCar(car);
+    @PutMapping("/update/{id}/{clientId}")
+    public ResponseEntity<Car> updateCar(@PathVariable("id")Long id,
+                                         @PathVariable("clientId")Long clientId,@RequestBody Car car) {
+        Car updatedCar = carService.updateCar(id,clientId,car);
         return new ResponseEntity<>(updatedCar,HttpStatus.OK) ;
     }
     @DeleteMapping("/delete/{id}")

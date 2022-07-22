@@ -27,8 +27,8 @@ public class InsurerController {
         return new ResponseEntity<>(newInsurer, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Insurer> updateInsurer(@RequestBody Insurer insurer) {
-        Insurer updatedInsurer = insurerService.updateInsurer(insurer);
+    public ResponseEntity<Insurer> updateInsurer(@PathVariable("id") Long id,@RequestBody Insurer insurer) {
+        Insurer updatedInsurer = insurerService.updateInsurer(id,insurer);
         return new ResponseEntity<>(updatedInsurer,HttpStatus.OK) ;
     }
     @DeleteMapping("/delete/{id}")

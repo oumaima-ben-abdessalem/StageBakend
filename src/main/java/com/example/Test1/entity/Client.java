@@ -5,6 +5,7 @@ import com.sun.istack.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 @AllArgsConstructor
@@ -16,20 +17,20 @@ import java.util.List;
 @Setter
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private  Long id ;
     private  String name ;
-    private Date birthDate ;
+    private ZonedDateTime birthDate ;
     private String phoneNumber ;
     private  String emailAddress ;
-    private  String userName ;
-    private  String password ;
     private int drivingExperience ;
     private boolean activePolicy ;
     private  String currentInsurer ;
     private int oldClaims ;
     private  int numberAccidents ;
+    private int age;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
     @JsonIgnore
     private List<Car> cars;

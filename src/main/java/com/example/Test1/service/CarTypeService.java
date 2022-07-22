@@ -27,8 +27,13 @@ public class CarTypeService {
         return carTypeRepository.findAll();
     }
 
-    public CarType updateCarType(CarType carType) {
-        return carTypeRepository.save(carType);
+    public CarType updateCarType(Long id,CarType carType) {
+
+        CarType oldCarType = carTypeRepository.findById(id).get();
+        oldCarType.setBrand(carType.getBrand());
+        oldCarType.setModel(carType.getModel());
+        oldCarType.setId(id);
+        return carTypeRepository.save(oldCarType);
     }
 
     public void deleteCarType(Long id) {

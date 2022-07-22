@@ -24,13 +24,14 @@ public class Car {
     @ManyToOne
     @JoinColumn(name ="clientId",nullable = false,referencedColumnName = "id")
     private Client client;
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name ="carTypeId",nullable = false,referencedColumnName = "id")
     private CarType carType ;
     private int carAge ;
-    private String countryregistration ;
-    private Date registertimecar ;
+    private int power ;
+    private String countryRegistration ;
+    private Date registerTimeCar ;
 
 
 
