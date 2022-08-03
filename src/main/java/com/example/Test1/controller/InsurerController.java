@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RequestMapping("/insurer")
 @RestController
@@ -36,4 +37,10 @@ public class InsurerController {
         insurerService.deleteInsurer(id);
         return(new ResponseEntity<>(HttpStatus.OK)) ;
     }
+    @GetMapping("/getInsurerNames")
+    public ResponseEntity<List<String>> getInsurerNames()
+    {
+        return new ResponseEntity<>(insurerService.getInsurerNames(), HttpStatus.OK);
+    }
+
 }

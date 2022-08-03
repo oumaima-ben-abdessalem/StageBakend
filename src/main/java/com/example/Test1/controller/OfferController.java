@@ -1,5 +1,6 @@
 package com.example.Test1.controller;
 
+import com.example.Test1.dto.OfferDto;
 import com.example.Test1.entity.Car;
 import com.example.Test1.entity.Offer;
 import com.example.Test1.service.CarService;
@@ -25,7 +26,7 @@ public class OfferController
     }
 
     @PostMapping("/add/{insurerName}")
-    public ResponseEntity<Offer> addOffer(@PathVariable("nameInsurer") String nameInsurer
+    public ResponseEntity<Offer> addOffer(@PathVariable("insurerName") String nameInsurer
             ,@RequestBody Offer offer) {
         Offer newOffer = offerService.addOffer(nameInsurer,offer);
         return new ResponseEntity<>(newOffer, HttpStatus.CREATED);
@@ -40,6 +41,10 @@ public class OfferController
     public ResponseEntity<?> deleteOffer(@PathVariable("id") Long id ){
         offerService.deleteOffer(id);
         return(new ResponseEntity<>(HttpStatus.OK)) ;
+    }
+    @GetMapping("/findOffers/{ageClient}/{drivingExp}/{numberAccidents}")
+    public ResponseEntity<?> findOffer(@PathVariable("ageClient") int ageClient,@PathVariable("drivingExp") int drivingExp,@PathVariable("numberAccidents") int numberAccidents){
+        return(new ResponseEntity<>(offerService.possibleOffersService(ageClient,drivingExp, numberAccidents), HttpStatus.OK)) ;
     }
 
 }

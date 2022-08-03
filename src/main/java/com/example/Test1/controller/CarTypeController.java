@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+
 @RequestMapping("/carType")
 @RestController
 public class CarTypeController {
@@ -20,9 +22,9 @@ public class CarTypeController {
         return new ResponseEntity<>(carTypeService.getAllTypeCars(), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<CarType> addCarType(@RequestBody CarType carType) {
-        CarType newCarType = carTypeService.addCarType(carType);
+    @PostMapping("/add/{offerId}")
+    public ResponseEntity<CarType> addCarType(@PathVariable("offerId") long offerId,@RequestBody CarType carType) {
+        CarType newCarType = carTypeService.addCarType(offerId,carType);
         return new ResponseEntity<>(newCarType, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
@@ -35,10 +37,16 @@ public class CarTypeController {
         carTypeService.deleteCarType(id);
         return(new ResponseEntity<>(HttpStatus.OK)) ;
     }
-    @GetMapping("/getModelsByBrand")
-    public ResponseEntity<List<String>> getAllModelsByBrand(String brand) {
+    @GetMapping("/getModelsByBrand/{brand}")
+    public ResponseEntity<List<String>> getAllModelsByBrand(@PathVariable("brand") String brand) {
         return new ResponseEntity<>(carTypeService.getcarModelsByBrand(brand), HttpStatus.OK);
     }
+    @GetMapping("/getBrands")
+    public ResponseEntity<Set<String>> getDistinctBrands()
+    {
+        return new ResponseEntity<>(carTypeService.getDistinctBrands(), HttpStatus.OK);
+    }
+
 
 
 

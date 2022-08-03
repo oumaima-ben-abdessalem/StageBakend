@@ -2,11 +2,13 @@ package com.example.Test1.service;
 
 import com.example.Test1.dao.ClientRepository;
 import com.example.Test1.dao.InsurerRepository;
+import com.example.Test1.entity.CarType;
 import com.example.Test1.entity.Client;
 import com.example.Test1.entity.Insurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class InsurerService {
@@ -45,5 +47,15 @@ public class InsurerService {
     public Insurer getInsurerById(Long id){
 
         return(insurerRepository.findById(id).orElse(null));
+    }
+    public List<String> getInsurerNames()
+    {
+        List<String> listInsurerNames= new ArrayList<>();
+        List<Insurer> list = insurerRepository.findAll();
+        for (Insurer insurer: list)
+        {
+            listInsurerNames.add(insurer.getName());
+        }
+        return listInsurerNames;
     }
 }

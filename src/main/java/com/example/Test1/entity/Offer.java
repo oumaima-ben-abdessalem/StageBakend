@@ -26,7 +26,6 @@ public class Offer
     @JsonIgnore
     private List<OfferType> offerTypes;
     private int maxAccidents;
-    private int minAccidents ;
     private int minAge ;
     private int minCarAge ;
     private int maxPower ;
@@ -34,10 +33,7 @@ public class Offer
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "offer")
     @JsonIgnore
     private List<CarType> carTypes;
-    private int mindrivingExp ;
-
-
-
+    private int minDrivingExp ;
     @ManyToOne
     @JoinColumn(name ="insurer_id",nullable = false,referencedColumnName = "id")
     @JsonIgnore

@@ -1,8 +1,8 @@
 package com.example.Test1.service;
 
 import com.example.Test1.dao.*;
+import com.example.Test1.dto.OfferDto;
 import com.example.Test1.entity.*;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,15 +47,12 @@ public class OfferService {
         return(offerRepository.findById(id).orElse(null));
     }
 
-  /*  public List<Offer> possibleOffers(Long idClient)
+   public List<Offer> possibleOffersService(int ageClient, int drivingExp,int numberAccidents)
     {
-        int ageClient = clientRepository.findById(idClient).get().getAge();
-        int numberAccidents = clientRepository.findById(idClient).get().getNumberAccidents();
-        int drivingexp = clientRepository.findById(idClient).get().getDrivingExperience();
-        CarType cartypeClient = clientRepository.findById(idClient).get().getCars().get(1).getCarType();
-        return  offerRepository.findpossibleOffers(ageClient,numberAccidents,drivingexp,cartypeClient);
+
+        return  offerRepository.findPossibleOffers(ageClient, drivingExp, numberAccidents);
     }
-*/
+
 
 
 } 

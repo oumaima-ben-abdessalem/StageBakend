@@ -2,24 +2,35 @@ package com.example.Test1.service;
 
 import com.example.Test1.dao.CarRepository;
 import com.example.Test1.dao.CarTypeRepository;
+import com.example.Test1.dao.OfferRepository;
 import com.example.Test1.entity.Car;
 import com.example.Test1.entity.CarType;
+import com.example.Test1.entity.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Service
 public class CarTypeService {
     @Autowired
     private CarTypeRepository carTypeRepository;
+    private OfferRepository offerRepository;
 
 
-    public CarTypeService(CarTypeRepository carTypeRepository) {
+    public CarTypeService(CarTypeRepository carTypeRepository,OfferRepository offerRepository) {
         this.carTypeRepository = carTypeRepository;
+        this.offerRepository = offerRepository ;
     }
 
-    public CarType addCarType(CarType carType) {
+    public CarType addCarType(Long offerId,CarType carType)
+    {
+        Offer offer = offerRepository.findById(offerId).get();
+        carType.setOffer(offer);
+
         return (carTypeRepository.save(carType));
     }
 
@@ -53,6 +64,17 @@ public class CarTypeService {
             listModel.add(carType.getModel());
         }
         return listModel;
+    }
+    public Set<String> getDistinctBrands()
+    {
+        Set<String> setBrand =  new HashSet<String>() ;
+        List<CarType> listCarTypes = carTypeRepository.findAll();
+        for (CarType carType:listCarTypes)
+        {
+            setBrand.add(carType.getBrand());
+
+        }
+        return setBrand ;
     }
 
 }

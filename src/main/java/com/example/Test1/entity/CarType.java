@@ -26,5 +26,4 @@ public class CarType {
     @JoinColumn(name ="offer_id",nullable = true,referencedColumnName = "id")
     @JsonIgnore
     private Offer offer;
-
 }
