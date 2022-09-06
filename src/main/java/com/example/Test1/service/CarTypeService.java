@@ -26,11 +26,8 @@ public class CarTypeService {
         this.offerRepository = offerRepository ;
     }
 
-    public CarType addCarType(Long offerId,CarType carType)
+    public CarType addCarType(CarType carType)
     {
-        Offer offer = offerRepository.findById(offerId).get();
-        carType.setOffer(offer);
-
         return (carTypeRepository.save(carType));
     }
 

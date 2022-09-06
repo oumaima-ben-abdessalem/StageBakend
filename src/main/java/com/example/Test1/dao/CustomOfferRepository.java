@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CustomOfferRepository {
     List<Offer> findPossibleOffers(int ageClient, int drivingExp,int numberAccidents);
+    List<Offer> search2(String name,int ageClient, int drivingExp,int numberAccidents);
 }

@@ -42,5 +42,10 @@ public class InsurerController {
     {
         return new ResponseEntity<>(insurerService.getInsurerNames(), HttpStatus.OK);
     }
+    @GetMapping("/getInsurerLogos")
+    public ResponseEntity<List<String>> getInsurerLogos()
+    {
+        return  new ResponseEntity<>(insurerService.getInsurerLogos(),HttpStatus.OK);
+    }
 
 }

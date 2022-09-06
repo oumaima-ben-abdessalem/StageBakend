@@ -35,4 +35,16 @@ public class CustomOfferRepositoryImpl implements CustomOfferRepository {
 
         return query.getResultList();
     }
+    @Override
+
+    public List<Offer> search2(String name,int ageClient, int drivingExp,int numberAccidents  ) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM `offer` o  join `insurer` i on o.insurer_id =:i.id where min_age <=:ageClient and min_driving_exp <=:drivingExp and max_accidents >=:numberAccidents and i.name LIKE '%m%' ", Offer.class);
+        query.setParameter("ageClient",ageClient);
+        query.setParameter("name", name );
+        query.setParameter("drivingExp",drivingExp);
+        query.setParameter("numberAccidents",numberAccidents);
+
+
+        return query.getResultList();
+    }
 }

@@ -23,8 +23,8 @@ public class CarTypeController {
     }
 
     @PostMapping("/add/{offerId}")
-    public ResponseEntity<CarType> addCarType(@PathVariable("offerId") long offerId,@RequestBody CarType carType) {
-        CarType newCarType = carTypeService.addCarType(offerId,carType);
+    public ResponseEntity<CarType> addCarType(@RequestBody CarType carType) {
+        CarType newCarType = carTypeService.addCarType(carType);
         return new ResponseEntity<>(newCarType, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")

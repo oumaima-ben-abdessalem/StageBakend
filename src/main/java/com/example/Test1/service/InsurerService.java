@@ -58,4 +58,14 @@ public class InsurerService {
         }
         return listInsurerNames;
     }
+    public List<String> getInsurerLogos()
+    {
+        List<String> listInsurerLogos = new ArrayList<>();
+        List<Insurer> list = insurerRepository.findAll();
+        for (Insurer insurer : list)
+        {
+            listInsurerLogos.add(insurer.getImageUrl());
+        }
+        return (listInsurerLogos);
+    }
 }
