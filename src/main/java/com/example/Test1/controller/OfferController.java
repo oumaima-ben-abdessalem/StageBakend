@@ -80,7 +80,7 @@ public class OfferController
         return new ResponseEntity<>(offerUpdated, HttpStatus.OK);
 
     }
-    @PutMapping("/findOffer/{id}")
+    @GetMapping("/findOffer/{id}")
     public ResponseEntity<Offer> find(@PathVariable("id") Long id)
     {
         Offer offer = offerService.findOfferById(id);

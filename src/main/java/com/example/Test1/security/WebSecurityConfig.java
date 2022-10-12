@@ -55,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/offer/**").permitAll()
                 .antMatchers("/offerType/**").permitAll()
                 .antMatchers("/insurer/**").permitAll()
+                .antMatchers("/sendmail/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
@@ -66,6 +67,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/configuration/security",
                 "/swagger-ui.html",
                 "/webjars/**",
-                "/swagger-ui/**","/carType/**","/car/**","/insurer/**","/offer/**","/client/**","/offerType/**");
+                "/swagger-ui/**","/carType/**","/car/**","/insurer/**","/offer/**","/client/**","/offerType/**","/sendmail/**");
     }
 }
